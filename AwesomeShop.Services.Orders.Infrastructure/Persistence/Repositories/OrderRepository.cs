@@ -19,6 +19,7 @@ namespace AwesomeShop.Services.Orders.Infrastructure.Persistence.Repositories
             await _collection.InsertOneAsync(order);
         }
 
+
         public async Task<Order> GetByIdAsync(Guid id)
         {
             return await _collection.Find(c => c.Id == id).SingleOrDefaultAsync();
@@ -27,6 +28,11 @@ namespace AwesomeShop.Services.Orders.Infrastructure.Persistence.Repositories
         public async Task UpdateAsync(Order order)
         {
             await _collection.ReplaceOneAsync(c => c.Id == order.Id, order);
+        }
+        public async  Task DeleteAsync(Guid id)
+        {
+            var filter = Builders<Order>.Filter.Eq(o => o.Id, id);
+            await _collection.DeleteOneAsync(filter);
         }
     }
 }

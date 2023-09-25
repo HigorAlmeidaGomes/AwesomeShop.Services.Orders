@@ -18,6 +18,7 @@ namespace AwesomeShop.Services.Orders.Infrastructure
 {
     public static class Extensions
     {
+        [Obsolete]
         public static IServiceCollection AddMongo(this IServiceCollection services) {
             services.AddSingleton(sp => {
                 var configuration = sp.GetService<IConfiguration>();

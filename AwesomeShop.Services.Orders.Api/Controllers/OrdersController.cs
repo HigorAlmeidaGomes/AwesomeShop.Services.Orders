@@ -34,7 +34,7 @@ namespace AwesomeShop.Services.Orders.Api.Controllers
         public async Task<IActionResult> Post([FromBody] AddOrder command) {
             var id = await _mediator.Send(command);
 
-            return CreatedAtAction(nameof(Get), new { id = id }, command);
+            return CreatedAtAction(nameof(Get), new {id}, command);
         }
     }
 }
